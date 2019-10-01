@@ -1,0 +1,178 @@
+{% load widget_tweaks %}
+{% load avatar_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V16</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+    {% load static %}
+	<link rel="icon" type="image/png" href=" {% static '/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static '/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static '/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <script src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <!--===============================================================================================-->
+<style>
+    .dash-nav-a {
+        font-family: Ubuntu-Bold;
+        letter-spacing: 3px;
+        color:black;
+        background:white;
+        padding:10px;
+    }
+    #dash-nav-a-first{
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    .dash-nav-a:hover, .dash-nav-a-active  {
+
+            background: black;
+            color: white;
+    }
+
+    #dash-nav-a-second{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .avatar {
+        width: 200px;
+        height: 200px,
+    }
+
+        	form.login100-form.validate-form.p-b-33.p-t-5 {
+		width:717px;
+
+	}
+</style>
+<script type="text/javascript">
+$(document).ready( function() {
+    $("#bchangepic").click( function() {
+        $("#changepic").click()
+
+
+    });
+    $("#changepic").on('change', function () {
+        $("#changepicform").submit()
+    })
+});
+</script>
+
+</head>
+<body>
+	
+	<div class="limiter">
+
+		<div class="container-login100" style="background-image: url({% static '/images/bg-01.jpg'%})">
+            <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+
+
+      <div class="text-center">
+   <img src="/djconnect{% avatar_url user %}" class="avatar img-circle img-thumbnail" alt="avatar">
+
+      </div>
+
+
+
+
+
+
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <ul class="nav nav-tabs" style="border-bottom:0">
+                <li class="dash-nav-li" id="dash-nav-li-first"><a class="dash-nav-a" id="dash-nav-a-first" href="{% url 'djconnect:dashboard' %}">Profile</a></li>
+                <li class="dash-nav-li" id="dash-nav-li-first"><a class="dash-nav-a dash-nav-a-active" href="{% url 'djconnect:dashboard_security' %}">Security</a></li>
+                <li class="dash-nav-li" id="dash-nav-li-second"><a class="dash-nav-a" id="dash-nav-a-second" href="{% url 'avatar_add' %}">Avatar</a></li>
+                <li class="dash-nav-li" id="dash-nav-li-second" style="margin-left: 348px;"><a class="dash-nav-a" style="border-radius: 10px;" id="dash-nav-a-second" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+
+
+          <div class="tab-content">
+             <div class="tab-pane active" id="messages">
+
+               <h2></h2>
+
+               <hr>
+                   <form method="post" action="{% url 'djconnect:dashboard_security' %}" class="login100-form validate-form p-b-33 p-t-5">
+                    {% csrf_token %}
+
+                    {% for field in edit_password_form %}
+                        <div class="wrap-input100 validate-input">
+                        {% for error in field.errors %}
+                          <p style="color: red;text-align: center;">{{ error }}</p>
+                        {% endfor %}
+                            {% if field.name == "old_password" %}
+                                <input {{ field.value }} type="password" placeholder="Old Password" name="old_password" class="input100" >
+
+                            {% elif field.name == "new_password1" %}
+                                 <input {{ field.value }} type="password" placeholder="New Password" name="new_password1" class="input100"  >
+                            {% elif field.name == "new_password2" %}
+                                    <input {{ field.value }} type="password" placeholder="Comfirm New Password" name="new_password2" class="input100"  >
+
+                            {% endif %}
+
+
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+                    {% endfor %}
+                      <div class="container-login100-form-btn m-t-32">
+						<button class="login100-form-btn" style="letter-spacing: 2px" type="submit">
+							Save
+						</button>
+					</div>
+                  </form>
+
+             </div><!--/tab-pane-->
+
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+
+		</div>
+
+	</div>
+	
+
+
+	
+<!--===============================================================================================-->
+	<script src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static '/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static '/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static '/js/main.js'%}"></script>
+
+</body>
+</html>
