@@ -1,4 +1,4 @@
-Django==2.2.5
+Django==2.2.20
 django-appconf==1.0.3
 django-avatar==4.1.0
 django-rest-framework==0.1.0
